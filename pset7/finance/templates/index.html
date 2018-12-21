@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <main class="container p-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Symbol
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Shares
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        TOTAL
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in share %}
+                    <tr>
+                        <td>
+                            {{stock['stock'] }}
+                        </td>
+                        <td>
+                            {{stock['name']}}
+                        </td>
+                        <td>
+                            {{stock['sum(amount)']}}
+                        </td>
+                        <td>
+                            {{stock['price']}}
+                        </td>
+                        <td>
+                            {{stock['total'] | usd}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                    </td>
+                    <td>{{moneyshares | usd}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+{% endblock %}

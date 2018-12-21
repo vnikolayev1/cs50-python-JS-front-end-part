@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <main class="container p-5">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Symbol
+                    </th>
+                    <th>
+                        Shares
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Balance
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stock in history %}
+                    {% if stock['amount'] < 0 %}
+                        <tr class="table-danger">
+                    {%else%}
+                        <tr class="table-success">
+                    {% endif %}
+                            <td>
+                                {{stock['stock']}}
+                            </td>
+                            <td>
+                                {{stock['amount']}}
+                            </td>
+                            <td>
+                                {{stock['price']}}
+                            </td>
+                            <td>
+                                {{stock['cash']}}
+                            </td>
+                            <td>
+                                {{stock['date']}}
+                            </td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

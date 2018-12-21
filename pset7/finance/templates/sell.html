@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div>
+            <b>Currently, you have:</b><br>
+            {% if not shares %}
+                No stocks yet!<br>
+            {% else %}
+                {% for stock in shares %}
+                    {{stock['sum(amount)']}} shares of {{stock['name']}}<br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+        <div class="form-group">
+            <select class="form-control" name="symbol">
+                <option hidden >Symbol</option>
+                {% for stock in shares %}
+                    <option>
+                        {{stock['stock']}}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="shares" placeholder="Amount" type="number"/>
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
